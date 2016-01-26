@@ -1,4 +1,4 @@
-baseurl = "https://you.github.io/" # TODO
+baseurl = "https://lukeindykiewicz.github.com/" # TODO
 builddrafts = false
 canonifyurls = true
 contentdir = "content"
@@ -24,7 +24,7 @@ Description = "Blog"
 Email = "you@example.space" # TODO:
 FaviconFile = "img/leaf.ico"
 GATracker = "XYZ" # TODO:
-GitHub = "//github.com/you" # TODO:
+GitHub = "//github.com/lukeindykiewicz" # TODO:
 Initials = "ad" # displayed on single post page; DEPRECATED in v0.3.0
 Lang = "en"
 LinkedIn = "//linkedin.com/in/you" # TODO:
