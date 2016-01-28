@@ -7,15 +7,19 @@ title = "sbt search maven plugin"
 
 # Sbt plugin to query search.maven.org
 
+## tl;dr
+
+[show me the code](https://github.com/blstream/sbt-search-maven-plugin)
+
 ## Why
 
-Lots of development tasks can be done without leaving your favorite editor/ide nor console.
-Writing Scala code is no difference, sbt gives a lot of power to run code and tests, to package and publish application. There is even plugin for git.
+Most development tasks can be done without leaving your favorite editor/ide nor console.
+Writing Scala code is no difference, sbt gives a lot of power to run code and tests, to package and publish application.
 
 There is one small thing for which you have to leave that environment and go to a browser - to search exact name of dependency for your project.
 Unless you have super memo powers you probably have to check what is the group id for akka or latest version for any other package that you would like to include in your project.
 
-To make it even simpler sbt-search-maven-plugin was created. Just type `searchMaven <akka>` and everything is clear. This prints the same results as `search.maven.org`, but without leaving sbt.
+To make it even simpler sbt-search-maven-plugin was created. Just type `searchMaven something` and everything is clear. This prints the same results as `search.maven.org`, but without leaving sbt.
 
 ## Plugin development
 
@@ -29,7 +33,7 @@ Theses are all great, but I wanted to create plugin that gets some user input fr
 
 ## Input plugin
 
-Plugin is generally the same, but main "entry" point for your code is different.
+Plugin code is similar as in above examples, but main "entry" point for your code is different, as we need InputKey.
 There are some important places to look at:
 
 ### build.sbt
@@ -44,7 +48,7 @@ The whole [build.sbt](https://github.com/blstream/sbt-search-maven-plugin/blob/m
 
 ### extends AutoPlugin
 
-The entry point for your code should be placed in an object that extends sbt.AutoPlugin. This in turn should have another object autoImport with definition of task to be added.
+The entry point for your code should be placed in an object that extends `sbt.AutoPlugin`. This in turn should have another object `autoImport` with definition of task.
 
 {{< highlight scala >}}
 object autoImport {
@@ -64,7 +68,7 @@ override lazy val projectSettings = Seq(
 
 `sbt.Keys._` contain a lot of useful things that we can use in our code, like i.e. `scalaVersion` defined in ones project or `streams.value.log`, which we use in our plugin to print results to user
 
-The while file can be found [here](https://github.com/blstream/sbt-search-maven-plugin/blob/master/src/main/scala/com/blstream/sbtsearchmavenplugin/SbtSearchMavenPlugin.scala)
+The whole file can be found [here](https://github.com/blstream/sbt-search-maven-plugin/blob/master/src/main/scala/com/blstream/sbtsearchmavenplugin/SbtSearchMavenPlugin.scala)
 
 ## Additional sbt settings
 
@@ -84,6 +88,10 @@ aggregate in searchMaven := false
 {{</ highlight >}}
 This says to not run defined task in submodules.
 
+### for testing
+
+If you use version without `SNAPSHOT` suffix and don't want to get warnings about deprecation when packaging your plugin, just add  `isSnapshot := true`  to your `build.sbt`.
+
 ## Testing sbt plugin
 
 ### unit tests
@@ -92,12 +100,34 @@ Nothing fancy here, just simple unit test for code that's not connected to sbt.
 
 ### scripted
 
-Scripted is default mechanism for testing sbt plugins.
+Scripted is default mechanism for testing sbt plugins by writing scripts for sbt. Search maven is not building anything,
+so we can just prepare basic srcipt to check whether `searchMaven` command is available and executed with success.
 
-continue here
+Special directory structure has to be used. Tests sits in `sbt-test` in `src`. Under that directory another two directories has to be created for test group and test itself. The full path looks like this:
+
+{{< highlight scala >}}
+<projectHome>/src/sbt-test/<testGroup>/<testName>
+{{</ highlight >}}
+
+In such path test should be described as:
+
+* `plugins.sbt` inside of project dir that adds plugin to test project
+* `test` file that contains script (test scenario)
+* `build.sbt` file that describes test build and assertions for test. Assertions are written in form of sbt tasks
+
+Compare [usage-help-test](https://github.com/blstream/sbt-search-maven-plugin/tree/master/src/sbt-test/test-group/usage-help-test)
 
 ## Make it available for everyone
 
+The best description can be found [here](http://www.scala-sbt.org/0.13/docs/Bintray-For-Plugins.html). Screenshots are a bit outdated, but most of the content is still valid.
+
+[build.sbt](https://github.com/blstream/sbt-search-maven-plugin/blob/master/build.sbt) can be stay simple
+
 ## Contribution
 
+You can pick feature from future work section in [readme](https://github.com/blstream/sbt-search-maven-plugin),
+issue with feature proposal (if any) or fix some bug. Pull requests are very welcome!
+
 ## Summary
+
+This blog describes how to write simple sbt plugin, test it and publish it.
