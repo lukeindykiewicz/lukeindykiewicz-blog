@@ -16,7 +16,7 @@ title = "sbt search maven plugin"
 Most development tasks can be done without leaving your favorite editor/ide nor console.
 Writing Scala code is no different: sbt gives you a lot of power to run code and tests, to package and publish application.
 
-There is one small thing though, forcing you have to leave that environment and go to a browser - to find the exact name of dependency for your project.
+There is one small thing though, forcing you to leave that environment and go to a browser - to find the exact name of dependency for your project.
 Unless you have super memo powers you probably have to check the group id for akka, or latest version for any other package that you would like to include in your project.
 
 To make it even simpler, I created *sbt-search-maven-plugin*. Just type `searchMaven something` and everything is clear. This prints the same results as `search.maven.org` without leaving sbt.
@@ -126,7 +126,7 @@ The best description can be found [here](http://www.scala-sbt.org/0.13/docs/Bint
 ## Contribution
 
 You can pick a feature from future work section in [readme](https://github.com/blstream/sbt-search-maven-plugin),
-make an issue with feature proposal (if any) or fix some bug. Pull requests are very welcome!
+implement issue with feature proposal (if any) or fix some bug. Pull requests are very welcome!
 
 ## Summary
 
