@@ -17,13 +17,13 @@ Most development tasks can be done without leaving your favorite editor/ide nor 
 Writing Scala code is no different: sbt gives you a lot of power to run code and tests, to package and publish application.
 
 There is one small thing though, forcing you to leave that environment and go to a browser - to find the exact name of dependency for your project.
-Unless you have super memo powers you probably have to check the group id for akka, or latest version for any other package that you would like to include in your project.
+Unless you have super memo powers you will probably have to check the group id for akka, or latest version for any other package that you would like to include in your project.
 
 To make it even simpler, I created *sbt-search-maven-plugin*. Just type `searchMaven something` and everything is clear. This prints the same results as `search.maven.org` without leaving sbt.
 
 ## Plugin development
 
-In order to make this happen I had to get some knowledge on how to write an sbt plugin. There are three great sources you can check:
+In order to make this happen I had to get some knowledge on how to write a sbt plugin. There are three great sources you can check:
 
 * [SBT AutoPlugins Tutorial](http://mukis.de/pages/sbt-autoplugins-tutorial/)
 * [testing sbt plugins](http://eed3si9n.com/testing-sbt-plugins)
@@ -74,14 +74,14 @@ The whole file can be found [here](https://github.com/blstream/sbt-search-maven-
 
 There are two things that should be mentioned here.
 
-To make your plugin enabled by default you should add such override:
+To make your plugin be enabled by default you should add such override:
 {{< highlight scala >}}
 override def trigger = allRequirements
 {{</ highlight >}}
-This simply says that this plugin will be activated when all required plugins are present. Plugins that this plugin depends on could be defined by overriding def `requires` (it's empty by default)
+This simply says that this plugin will be activated when all required plugins are present. Plugins, that this plugin depends on, could be defined by overriding def `requires` (it's empty by default)
 
-This plugin doesn't interact with code in project - just searches for artifacts - so we don't want our code to be run multiple times when it's executed inside multimodule project.
-To do this additional setting has to be specified:
+This plugin doesn't interact with code in project - it just searches for artifacts - so we don't want our code to be run multiple times when it's executed inside multimodule project.
+To avoid this, the additional setting has to be specified:
 
 {{< highlight scala >}}
 aggregate in searchMaven := false
@@ -90,7 +90,7 @@ This stops the task from running in submodules.
 
 ### for testing
 
-If you use version without `SNAPSHOT` suffix and don't want to get warnings about deprecation when packaging your plugin, just add  `isSnapshot := true`  to your `build.sbt`.
+If you use version without `SNAPSHOT` suffix and you don't want to get warnings about deprecation during packaging your plugin, just add  `isSnapshot := true`  to your `build.sbt`.
 
 ## Testing sbt plugin
 
@@ -100,34 +100,34 @@ Nothing fancy here, just simple unit test for code that's not related to sbt.
 
 ### scripted
 
-Scripted is default mechanism for testing sbt plugins by writing scripts for sbt. Search maven is not building anything,
-so we can just prepare basic script to check whether `searchMaven` command is available and executed with success.
+Scripted is the default mechanism for testing sbt plugins by writing scripts for sbt. Search maven is not building anything,
+so we can just prepare basic script to check whether `searchMaven` command is available and executable with a success.
 
-Special directory structure has to be used. Tests sit in `sbt-test` in `src`. Under that directory another two directories have to be created for test group and test itself. The full path looks like this:
+A special directory structure has to be used. Tests are placed in `sbt-test` in `src`. Under that directory another two directories have to be created for test group and test itself. The full path looks like this:
 
 {{< highlight scala >}}
 <projectHome>/src/sbt-test/<testGroup>/<testName>
 {{</ highlight >}}
 
-In such path test should be described as:
+In such a path test should be described as:
 
-* `plugins.sbt` inside of project dir that adds plugin to test project
+* `plugins.sbt` inside of the project dir that adds plugin to the test project
 * `test` file that contains script (test scenario)
-* `build.sbt` file that describes test build and assertions for test. Assertions are written in form of sbt tasks.
+* `build.sbt` file that describes the test build and an assertions for test. Assertions are written in form of the sbt tasks.
 
-Compare [usage-help-test](https://github.com/blstream/sbt-search-maven-plugin/tree/master/src/sbt-test/test-group/usage-help-test)
+Compare the [usage-help-test](https://github.com/blstream/sbt-search-maven-plugin/tree/master/src/sbt-test/test-group/usage-help-test)
 
 ## Make it available for everyone
 
-The best description can be found [here](http://www.scala-sbt.org/0.13/docs/Bintray-For-Plugins.html). Screenshots are a bit outdated, but most of the content is still valid.
+The best description can be found [here](http://www.scala-sbt.org/0.13/docs/Bintray-For-Plugins.html). The screenshots are a bit outdated, but most of the content is still valid.
 
 [build.sbt](https://github.com/blstream/sbt-search-maven-plugin/blob/master/build.sbt) can stay simple.
 
 ## Contribution
 
-You can pick a feature from future work section in [readme](https://github.com/blstream/sbt-search-maven-plugin),
-implement issue with feature proposal (if any) or fix some bug. Pull requests are very welcome!
+You can pick a feature from the future work section in [readme](https://github.com/blstream/sbt-search-maven-plugin),
+implement issue with feature proposal (if any) or fix some bugs. Pull requests are very welcome!
 
 ## Summary
 
-This blog describes how to write simple sbt plugin, test it and publish it.
+This blog describes how to write a simple sbt plugin, test it and publish it.
