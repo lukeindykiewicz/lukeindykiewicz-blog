@@ -1,6 +1,6 @@
 +++
 date = "2016-01-26T18:27:31+01:00"
-draft = true
+draft = false
 title = "sbt search maven plugin"
 
 +++
