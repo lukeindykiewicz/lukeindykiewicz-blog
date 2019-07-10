@@ -1,32 +1,71 @@
-baseurl = "https://lukeindykiewicz.github.com/"
-builddrafts = false
-canonifyurls = true
-contentdir = "content"
-languageCode = "en-US"
-layoutdir = "layouts"
-publishdir = "public"
-author = "Luke Indykiewicz"
-title = "luekindykiewicz"
-pygmentsuseclasses = true
-# disqusShortname = "cocoaexamplesite" # TODO: optional, comment out to disable Disqus
-pluralizelisttitles = false
+baseurl                = "https://lukeindykiewicz.github.com/"
+builddrafts            = false
+canonifyurls           = true
+contentdir             = "content"
+languageCode           = "en-US"
+layoutdir              = "layouts"
+publishdir             = "public"
+theme                  = "cocoa"
+author                 = "Luke Indykiewicz"
+title                  = "lukeindykiewicz"
+pygmentsuseclasses     = true
+# disqusShortname       = "cocoaexamplesite" # TODO: optional, comment out to disable Disqus
+pluralizelisttitles    = false
+googleAnalytics        = "UA-73272302-1"
 
 [permalinks]
-fixed = ":title/"
-blog = "blog/:slug/"
+blog                   = "blog/:slug/"
+
+[[menu.main]]
+name                   = "Blog"
+weight                 = -120
+identifier             = "blog"
+url                    = "/blog/"
+
+[[menu.main]]
+name                   = "About"
+weight                 = -110
+identifier             = "about"
+url                    = "/about/"
 
 [params]
-Author = "Luke Indykiewicz"
-CacheBuster = true
-DateForm = "2 Jan 2006"
-DateFormFull = "Mon, 2 Jan 2006, 15:04:05 MST"
-Description = "Blog"
-Email = "you@example.space" # TODO:
-FaviconFile = "img/favico.ico"
-GATracker = "UA-73272302-1"
-GitHub = "//github.com/lukeindykiewicz"
-Initials = "li" # displayed on single post page; DEPRECATED in v0.3.0
-Lang = "en"
-LinkedIn = "//linkedin.com/in/lukaszindykiewicz"
-Twitter = "//twitter.com/lukeindykiewicz"
-ExtraCssFiles = [ "/css/override.css" ] # relative to public directory
+include_rss            = true                          # include RSS <link> tag in <head> and show RSS icon
+latestpostscount       = 0                             # how many posts to display on the home page
+i18n_flags             = false                         # whether to display small country flags for available translations
+author                 = "Luke Indykiewicz"
+cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
+dateform               = "2 Jan 2006"
+dateformfull           = "Mon, 2 Jan 2006, 15:04:05 MST"
+description            = "Blog"
+email                  = ""
+extracssfiles          = [ "" ]       # In your `static` directory, add/remove files as necessary.
+faviconfile            = "img/favico.ico"
+github                 = "//github.com/lukeindykiewicz"
+instagram              = ""
+px500                  = ""
+lang                   = "en"
+linkedin               = "//linkedin.com/in/lukaszindykiewicz"
+noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
+selfintro              = ""                            # appears in the site header when set to a non-empty string
+twitter                = "//twitter.com/lukeindykiewicz"
+mastodon               = ""
+telegram               = ""
+
+highlightjs            = false
+# highlightjslanguages = ["go"]                        # additional languages not included in the "common" set
+# highlightjsStyle     = "darcula"
+
+piwik                  = false                         # If true, Piwik integration is enabled
+# piwik_url            = "//www.example.com/piwik/"    # URL to your Piwik installation. Must End with a slash
+# piwik_id             = 2                             # Id of your site in Piwik
+
+gitalk                 = false
+# if gitalk is true, the following params should be set. These parameters could be retrieved from github OAuth
+gitalk_clientID        = "your client id"
+gitalk_clientSecret    = "your client secret"
+gitalk_repo            = "your repo url"
+gitalk_owner           = "the owner of this repo"
+gitalk_admin           = ['a', 'list', 'of', 'administrator']
+
+#avatar                 = "img/profile.png" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
+# gravatar             = ""                # gravatar hash. see https://en.gravatar.com/site/implement/hash/. do not use in the same time as avatar
