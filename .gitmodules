@@ -2,3 +2,7 @@
 	path = public
 	url = git@github.com:lukeindykiewicz/lukeindykiewicz.github.com.git
 	branch = master
+[submodule "themes/cocoa"]
+	path = themes/cocoa
+	url = git@github.com:lukeindykiewicz/cocoa-hugo-theme.git
+	branch = master
