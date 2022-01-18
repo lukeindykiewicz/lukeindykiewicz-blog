@@ -1,0 +1,24 @@
+body {
+  font-weight: 200;
+}
+
+.navigation-list {
+  text-transform: lowercase;
+}
+
+.post-meta {
+  font-size: 1.2rem;
+}
+
+.title {
+  text-transform: lowercase;
+}
+
+.content article header h1 {
+  font-size: 3.2rem;
+  line-height: 3.6rem;
+}
+
+footer {
+  font-size: 1.2rem !important;
+}

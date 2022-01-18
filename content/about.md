@@ -5,11 +5,6 @@ title = "about"
 
 +++
 
-I'm a Scala developer with passion for coding.
+My name is Łukasz Indykiewicz. I'm a software engineer that is focused on product and pragmatic solutions, but I also love writing beautiful code.
 
-
-
-
-Scala developer by day and night. Likes new concepts, relies
-on production proven solutions. Always keen to hear about interesting ideas.
 Team player, fast learner and coffee lover.
